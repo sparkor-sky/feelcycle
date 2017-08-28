@@ -14,12 +14,14 @@
         android:layout_margin="10dp"
         android:layout_weight="2">
         <TextView
+            android:id="@+id/renew_head_picture_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="更新头像"
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
         <com.silence.feelcycle.utils.CircleImageView
+            android:id="@+id/renew_head_picture_image"
             android:layout_width="90dp"
             android:background="@drawable/head_picture"
             android:layout_height="90dp" />
@@ -44,6 +46,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
         <EditText
+            android:id="@+id/nick_name_edit_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@null"
@@ -102,6 +105,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/birthday_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:onClick="setBirthday"
@@ -130,6 +134,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/city_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="中国，宁波"
@@ -154,6 +159,7 @@
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
         <EditText
+            android:id="@+id/brief_introduction_edit_text"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="@null"
