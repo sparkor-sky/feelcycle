@@ -99,8 +99,7 @@
         android:layout_margin="10dp"
         android:layout_weight="1">
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
             android:text="出生年月"
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
@@ -108,7 +107,7 @@
             android:id="@+id/birthday_text"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|end"
             android:text="1994-05-21"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -127,8 +126,7 @@
         android:layout_margin="10dp"
         android:layout_weight="1">
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
             android:text="所在城市"
             android:gravity="center_vertical"
             android:layout_height="match_parent" />
@@ -136,8 +134,9 @@
             android:id="@+id/city_text"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="中国，宁波"
-            android:gravity="center_vertical"
+            android:text="浙江-宁波"
+            android:maxLines="1"
+            android:gravity="center_vertical|end"
             android:layout_height="match_parent" />
     </LinearLayout>
     <!--分割线-->
