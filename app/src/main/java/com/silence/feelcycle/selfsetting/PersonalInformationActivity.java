@@ -47,8 +47,6 @@ public class PersonalInformationActivity extends AppCompatActivity {
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,8 +217,8 @@ public class PersonalInformationActivity extends AppCompatActivity {
         }
         return true;
     }
-
-    public ArrayList<JsonBean> parseData(String result) {//Gson 解析
+    //Gson 的解析
+    public ArrayList<JsonBean> parseData(String result) {
         ArrayList<JsonBean> detail = new ArrayList<>();
         try {
             JSONArray data = new JSONArray(result);
