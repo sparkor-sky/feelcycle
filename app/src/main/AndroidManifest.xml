@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="cYvTRAegvNlrnI2N0TKOHpuPR3Cawsa8" />
+            android:value="fTFSvtcCConUrMtVtXkX34g8M9MR1prZ" />
 
         <activity android:name=".entrance.RegistActivity">
         </activity>
