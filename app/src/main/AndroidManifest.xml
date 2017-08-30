@@ -37,7 +37,12 @@
         <activity android:name=".entrance.PhoneRegistActivity" />
         <activity android:name=".selfsetting.MyWalletActivity" />
         <activity android:name=".selfsetting.SettingActivity" />
-        <activity android:name=".selfsetting.PersonalInformationActivity" />
+        <activity
+            android:name=".selfsetting.PersonalInformationActivity"
+            android:label="@string/personal_information"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity android:name=".selfsetting.AccountManagementActivity" />
         <activity android:name=".booking.AffirmSetsActivity" />
         <activity android:name=".booking.FitnessActivity" />

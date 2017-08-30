@@ -1,6 +1,5 @@
 package com.silence.feelcycle.booking
 
-
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle

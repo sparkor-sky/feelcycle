@@ -2,21 +2,21 @@ package com.silence.feelcycle.selfsetting;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -24,21 +24,28 @@ import com.google.gson.Gson;
 import com.silence.feelcycle.R;
 import com.silence.feelcycle.utils.JsonBean;
 import com.silence.feelcycle.utils.JsonFileReader;
-
 import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 public class PersonalInformationActivity extends AppCompatActivity {
+    //保存用户信息
+    private SharedPreferences.Editor editor;
+    private SharedPreferences pref;
+    private String nickName,bir_day,bir_month,bir_year,city,province,introduction;
+    int sex;
+    //初始化用户信息的标记
+    private static boolean initFlag = false;
+    //ToolBar
+    private Toolbar toolbar;
+    //用户昵称
+    EditText nickText;
     //性别的spinner
     private Spinner sex_spinner;
     private List<String> sex_data_list;
     private ArrayAdapter<String> sex_arr_adapter;
-
-    //HomeAsUp按钮
-    ActionBar actionBar;
     //显示生日的TextView
     TextView brithText;
     //显示城市的TextView
@@ -46,6 +53,8 @@ public class PersonalInformationActivity extends AppCompatActivity {
     private ArrayList<JsonBean> options1Items = new ArrayList<>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
+    //显示个人简介的Text
+    EditText briefIntro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,30 +64,66 @@ public class PersonalInformationActivity extends AppCompatActivity {
     }
 
     private void init() {
-        //HomeAsUp 按钮
-        actionBar = getSupportActionBar();
-        //HomeAsUp 按钮
-        actionBar=getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //保存用户信息的编辑器
+        pref = getSharedPreferences("personalInformation",MODE_PRIVATE);
+        editor = pref.edit();
+        if(initFlag==false) {
+            //初始化用户信息
+            editor.putString("name", "新用户");
+            editor.putString("birth_day", "01");
+            editor.putString("birth_month", "01");
+            editor.putString("birth_year", "1990");
+            editor.putString("city", "宁波");
+            editor.putString("province", "浙江");
+            editor.putString("introduction", "");
+            editor.putInt("sex",0);
+            editor.apply();
+            initFlag = true;
+        }
+
+        //HomeAsUp 按钮添加返回功能
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        //个人简介
+        briefIntro = (EditText)findViewById(R.id.brief_introduction_edit_text);
 
         //性别spinner
         sex_spinner = (Spinner) findViewById(R.id.sex_spinner);
+        sex_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                sex = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         //数据
         sex_data_list = new ArrayList<String>();
+        sex_data_list.add("保密");
         sex_data_list.add("男");
         sex_data_list.add("女");
-        sex_data_list.add("保密");
+
         //适配器
         sex_arr_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sex_data_list);
-
-        sex_arr_adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sex_data_list);
 
         //设置样式
         sex_arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //加载适配器
         sex_spinner.setAdapter(sex_arr_adapter);
 
-
+        //用户昵称的文本
+        nickText = (EditText)findViewById(R.id.nick_name_edit_text);
         //生日文本和监听器
         brithText = (TextView) findViewById(R.id.birthday_text);
         brithText.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +140,8 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 showPickerView();
             }
         });
-
+        //个人简介文本
+        briefIntro = (EditText)findViewById(R.id.brief_introduction_edit_text);
         /**
          * 注意：assets 目录下的Json文件仅供参考，实际使用可自行替换文件
          * 关键逻辑在于循环体
@@ -148,7 +194,21 @@ public class PersonalInformationActivity extends AppCompatActivity {
              */
             options3Items.add(Province_AreaList);
         }
-
+        //读取以前的信息记录
+        //初始化用户信息 nickName,sex,birthday,address,introduction;
+        nickName = pref.getString("name","新用户");
+        nickText.setText(nickName);
+        sex = pref.getInt("sex",0);
+        sex_spinner.setSelection(sex,true);
+        bir_day =pref.getString("birth_day","01");
+        bir_month = pref.getString("birth_month", "01");
+        bir_year = pref.getString("birth_year", "1990");
+        brithText.setText(bir_year + "-" + bir_month + "-" + bir_day);
+        city = pref.getString("city", "宁波");
+        province = pref.getString("province", "浙江");
+        mTvAddress.setText(province + "-" + city);
+        introduction = pref.getString("introduction", "");
+        briefIntro.setText(introduction);
     }
     //显示选择城市的对话框
     private void showPickerView() {
@@ -158,6 +218,10 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 //返回的分别是两个级别的选中位置
                 String text = options1Items.get(options1).getPickerViewText() +"-"+
                         options2Items.get(options1).get(options2);
+                //保存到本地
+                city = options2Items.get(options1).get(options2);
+                province = options1Items.get(options1).getPickerViewText();
+                //显示用户的选择
                 mTvAddress.setText(text);
             }
         }).setTitleText("")
@@ -170,6 +234,7 @@ public class PersonalInformationActivity extends AppCompatActivity {
           pvOptions.setPicker(options1Items, options2Items, options3Items);//三级选择器
           */
         pvOptions.setPicker(options1Items, options2Items);//二级选择器
+
         pvOptions.show();
     }
 
@@ -184,6 +249,11 @@ public class PersonalInformationActivity extends AppCompatActivity {
                 int mYear = year;
                 int mMonth = month;
                 int mDay = day;
+                //保存
+                bir_day = mDay + "";
+                bir_month=mMonth + "";
+                bir_year = mYear + "";
+
                 //更新EditText控件日期 小于10加0
                 brithText.setText(new StringBuilder()
                         .append(mYear)
@@ -211,7 +281,21 @@ public class PersonalInformationActivity extends AppCompatActivity {
         switch (item.getItemId()){
             //保存按钮的监听
             case R.id.action_save:
+                //保存  nickName,bir_day,bir_month,bir_year,city,province,introduction
+                nickName = nickText.getText().toString();
+                editor.putString("name", nickName);
+                editor.putInt("sex",sex);
+                editor.putString("birth_day", bir_day);
+                editor.putString("birth_month", bir_month);
+                editor.putString("birth_year", bir_year);
+                editor.putString("city", city);
+                editor.putString("province", province);
+                introduction = briefIntro.getText().toString();
+                editor.putString("introduction", introduction);
+                editor.apply();
                 Toast.makeText(getApplicationContext(),"已保存",Toast.LENGTH_SHORT).show();
+                //返回上个界面
+                startActivity(new Intent(PersonalInformationActivity.this,SettingActivity.class));
                 break;
             default:break;
         }
