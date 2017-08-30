@@ -19,7 +19,7 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical"
             android:layout_height="wrap_content"
-            android:text="个人资料"/>
+            android:text="@string/personal_information"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
