@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.silence.feelcycle.R;
@@ -36,8 +35,6 @@ public class PersonalInformationActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private String nickName,bir_day,bir_month,bir_year,city,province,introduction;
     int sex;
-    //初始化用户信息的标记
-    private static boolean initFlag = false;
     //ToolBar
     private Toolbar toolbar;
     //用户昵称
@@ -67,19 +64,6 @@ public class PersonalInformationActivity extends AppCompatActivity {
         //保存用户信息的编辑器
         pref = getSharedPreferences("personalInformation",MODE_PRIVATE);
         editor = pref.edit();
-        if(initFlag==false) {
-            //初始化用户信息
-            editor.putString("name", "新用户");
-            editor.putString("birth_day", "01");
-            editor.putString("birth_month", "01");
-            editor.putString("birth_year", "1990");
-            editor.putString("city", "宁波");
-            editor.putString("province", "浙江");
-            editor.putString("introduction", "");
-            editor.putInt("sex",0);
-            editor.apply();
-            initFlag = true;
-        }
 
         //HomeAsUp 按钮添加返回功能
         toolbar = (Toolbar)findViewById(R.id.toolbar);
