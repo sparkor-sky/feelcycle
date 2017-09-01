@@ -1,94 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.silence.feelcycle.entrance.RegistActivity"
-    android:orientation="vertical">
-    <!--logo显示-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="130dp">
-        <com.silence.feelcycle.utils.CircleImageView
-            android:id="@+id/regist_logo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/logo"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        tools:layout_editor_absoluteY="114dp"
-        tools:layout_editor_absoluteX="0dp">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/regist_name" />
-    </LinearLayout>
-
-<LinearLayout
-    android:layout_marginTop="50dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    tools:layout_editor_absoluteY="199dp"
-    tools:layout_editor_absoluteX="0dp">
-    <Button
-        android:id="@+id/bt_phone_regist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/regist_button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="216dp" />
-</LinearLayout>
-
+    android:orientation="vertical">
+    <!--返回上也一层登录界面的按钮-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
+    <!--手机号文本-->
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="308dp">
-
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <!--手机号文本框-->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_phone" />
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/regist_tip"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="158dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="12dp"
+            android:text="+86"/>
+        <!--editText-->
+        <EditText
+            android:id="@+id/user_phone_edit_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/regist_service"
-            tools:layout_editor_absoluteX="75dp"
-            tools:layout_editor_absoluteY="139dp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/regist_and"
-            tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="128dp" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/regist_secrt"
-            tools:layout_editor_absoluteX="206dp"
-            tools:layout_editor_absoluteY="139dp" />
-
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textSize="12dp" />
+        <ImageView
+            android:id="@+id/phone_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_clear" />
     </LinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#BDBDBDBD" />
+    <!--密码文本-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <!--手机号文本框-->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_lock" />
+        <!--editText-->
+        <EditText
+            android:id="@+id/user_psw"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入密码，不少于6位"
+            android:password="true"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textSize="12dp" />
+        <ImageView
+            android:id="@+id/psw_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_clear" />
+    </LinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#BDBDBDBD" />
+
+    <!--下一步按钮-->
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_margin="20dp"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_login"
+        android:text="下一步"
+        android:textColor="#FFFFFF" />
+
 
 </LinearLayout>

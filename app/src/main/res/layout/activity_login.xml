@@ -2,92 +2,118 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
     <!--返回上也一层登录界面的按钮-->
-    <Button
-        android:id="@+id/bt_backto_startlogin"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="20dp"
-        android:onClick="back"
-        android:background="@drawable/backspace_black_48dp" />
-    <!--密码登录文本框-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
-
-        android:layout_marginTop="20dp"
-        android:text="密码登录"
-        android:textSize="24dp" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
     <!--下面的整个部分采用线性布局-->
+    <!--手机号文本-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
         <!--手机号文本框-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="手机号           "
-            android:textSize="12dp" />
-        <!--spinner和editText-->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:maxLength="11"
-                android:hint="请输入手机号"
-                android:textSize="12dp" />
-        </LinearLayout>
-        <!--密码-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="密 码             "
-            android:textSize="12dp" />
-
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_phone" />
+        <!--editText-->
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/user_phone_edit_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="16dp"
-            android:maxLength="12"
-            android:password="true"
-            android:hint="请输入密码  "
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:maxLength="11"
+            android:maxLines="1"
             android:textSize="12dp" />
-        <!--忘记密码-->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:text="忘记密码?          "
-            android:textSize="10dp" />
-        <!--登录按钮-->
-        <Button
-            android:id="@+id/bt_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登 录"
-            android:onClick="next"/>
-
+        <ImageView
+            android:id="@+id/phone_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_clear" />
     </LinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#BDBDBDBD" />
+    <!--密码文本-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <!--手机号文本框-->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_lock" />
+        <!--editText-->
+        <EditText
+            android:id="@+id/user_psw"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:password="true"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:textSize="12dp" />
+        <ImageView
+            android:id="@+id/pwd_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="10dp"
+            android:visibility="invisible"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_clear" />
+    </LinearLayout>
+    <!--分割线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#BDBDBDBD" />
+
+    <!--分割线-->
+    <!--忘记密码-->
+    <Button
+        android:id="@+id/bt_forget_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="忘记密码?"
+        android:textSize="10dp" />
+    <!--登录按钮-->
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_login"
+        android:text="登 录"
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>

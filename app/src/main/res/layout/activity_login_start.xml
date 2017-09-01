@@ -9,6 +9,7 @@
         android:layout_height="80dp"
         android:layout_margin="20dp"
         android:src="@drawable/logo"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,12 +18,14 @@
         android:text="登 录" />
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="手机登录"
+        android:layout_height="60dp"
+        android:text="@string/phone_login"
         android:padding="10dp"
         android:textSize="14dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_login"
         android:id="@+id/bt_phone_login"
-        android:layout_margin="20dp"
+        android:layout_margin="40dp"
         android:onClick="phoneLogin"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,6 +44,7 @@
             android:layout_height="wrap_content"
             android:textSize="12dp"
             android:background="#00000000"
+            android:autoLink="all"
             android:text="注册登录"/>
     </LinearLayout>
 

@@ -5,12 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     tools:context="com.silence.feelcycle.entrance.PhoneRegistActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="手机号码+86 131 6548 6435" />
+        android:layout_marginTop="20dp"
+        android:text="手机号码 +86 131-6548-6435" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,27 +26,30 @@
         android:orientation="horizontal"
         android:layout_margin="20dp">
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:maxLength="8"
             android:hint="验证码"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="重新获取"/>
-
+            android:id="@+id/bt_resent"
+            android:gravity="center"
+            android:layout_width="96dp"
+            android:layout_margin="10dp"
+            android:layout_height="32dp"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_login" />
     </LinearLayout>
-    <EditText
-        android:layout_margin="20dp"
-        android:inputType="textPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="设置密码"
-        android:maxLength="11"/>
+
     <Button
         android:id="@+id/bt_submit_regist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
         android:layout_margin="20dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_login"
         android:text="注  册"/>
 
 
