@@ -23,9 +23,13 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="fTFSvtcCConUrMtVtXkX34g8M9MR1prZ" />
 
-        <activity android:name=".entrance.RegistActivity">
+        <activity android:name=".entrance.RegistActivity"
+            android:label="@string/regist_name"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".entrance.LoginActivity" />
+        <activity android:name=".entrance.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/phone_login"/>
         <activity android:name=".entrance.LoginStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +38,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".entrance.CodeGetActivity" />
-        <activity android:name=".entrance.PhoneRegistActivity" />
+        <activity android:name=".entrance.PhoneRegistActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="手机验证"/>
         <activity android:name=".selfsetting.MyWalletActivity" />
         <activity android:name=".selfsetting.SettingActivity" />
         <activity
